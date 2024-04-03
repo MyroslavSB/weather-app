@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {ApiKeyInterceptor} from "./shared/interceptors/api-key.interceptor";
+import {GeocodingApiService} from "./services/geocoding-api.service";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {ApiKeyInterceptor} from "./shared/interceptors/api-key.interceptor";
       provide: HTTP_INTERCEPTORS,
       useClass: ApiKeyInterceptor,
       multi: true
-    }
+    },
+    GeocodingApiService
   ],  bootstrap: [AppComponent]
 })
 export class AppModule { }

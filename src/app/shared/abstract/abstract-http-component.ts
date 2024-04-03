@@ -4,11 +4,12 @@ import {Params} from "@angular/router";
 import {environment} from "../../../environments/environment";
 
 export class AbstractHttpComponent {
+  protected baseURL = environment.api_url
+
   constructor(
-    private http: HttpClient
+    protected http: HttpClient
   ) {
   }
-  private baseURL = environment.api_url
 
   public httpPostRequest(
     url: string,

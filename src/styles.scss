@@ -3,8 +3,8 @@
 @import "./assets/styles/index";
 
 .container {
-  width: 85%;
-  max-width: 2160px;
+  width: 50%;
+  max-width: 1920px;
   height: 100%;
   margin: 0 auto;
 }
@@ -20,4 +20,3 @@
 .subtitle-1 {
   @include font-base(14px, 400, 19px, normal, $roboto);
 }
-

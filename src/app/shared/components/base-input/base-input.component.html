@@ -20,8 +20,8 @@
       [attr.maxlength]="inputMaxLength ? inputMaxLength : 524288"
       [style]="inputStyle"
       [ngStyle]="{
-      'padding-right': isPassword || rightIcon ? '47px' : '12px',
-      'padding-left': searchInput ? '42px' : '15px'
+      'padding-right': rightPadding,
+      'padding-left': leftPadding
       }"
       (keydown.enter)="onEnterPress()"
 

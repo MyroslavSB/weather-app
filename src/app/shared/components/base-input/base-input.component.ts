@@ -1,13 +1,9 @@
 import {
   Component,
-  DestroyRef,
   ElementRef,
   EventEmitter,
-  inject,
   Input,
-  OnInit,
   Output,
-  Self,
   ViewChild
 } from '@angular/core';
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
@@ -60,4 +56,13 @@ export class BaseInputComponent {
   public onLeftIconClick(): void {
     this.leftIconClicked.emit()
   }
+
+  public get rightPadding(): string {
+    return this.rightIcon ? '47px' : '12px'
+  }
+
+  public get leftPadding(): string {
+    return this.leftIcon ? '42' : '15'
+  }
+
 }

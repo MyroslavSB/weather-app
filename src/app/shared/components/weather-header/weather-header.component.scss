@@ -1,0 +1,27 @@
+.header {
+  &__main {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+
+    &-logo {
+      margin-right: 32px;
+
+    }
+
+    &-search {
+      height: 48px;
+      width: 264px;
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    app-base-icon .logo {
+
+      width: 160px;
+      height: 140px;
+    }
+  }
+}

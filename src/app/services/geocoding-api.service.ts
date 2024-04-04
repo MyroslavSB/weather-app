@@ -6,7 +6,9 @@ import {Params} from "@angular/router";
 import {ICity} from "../shared/interfaces/services/locations-api/i-city";
 import {EApiUrls} from "../shared/enums/e-api-urls";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GeocodingApiService extends AbstractHttpComponent {
 
   constructor(
@@ -15,7 +17,7 @@ export class GeocodingApiService extends AbstractHttpComponent {
     super(http)
   }
 
-  public getCitiesByParams(params: Params): Observable<ICity[]> {
+  public getCitiesByParams(params: Params = {}): Observable<ICity[]> {
     return this.httpGetRequest(EApiUrls.GEOCODING_API, params)
   }
 }

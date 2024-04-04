@@ -5,6 +5,7 @@ import {environment} from "../../../environments/environment";
 
 export class AbstractHttpComponent {
   protected baseURL = environment.api_url
+  protected apiKey = environment.api_key
 
   constructor(
     protected http: HttpClient
@@ -21,6 +22,8 @@ export class AbstractHttpComponent {
   }
 
   public httpGetRequest<ResType>(url: string, params: Params = {}): Observable<ResType> {
+    params['appid'] = this.apiKey
+
     return this.http.get<any>(this.baseURL + url, {params});
   }
 }

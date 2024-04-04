@@ -1,9 +1,9 @@
 import {
-  Component,
+  Component, ContentChild,
   ElementRef,
   EventEmitter,
   Input,
-  Output,
+  Output, TemplateRef, TrackByFunction,
   ViewChild
 } from '@angular/core';
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
@@ -24,26 +24,28 @@ import {CommonModule} from "@angular/common";
 })
 export class BaseInputComponent {
 
+  @ContentChild(TemplateRef) autoCompleteItemTemplate: TemplateRef<any>
   @ViewChild('inputElement') inputEL: ElementRef
+
+
   @Input() placeholder: string = '';
   @Input({required: true}) control: FormControl;
   @Input() isPassword: boolean = false;
   @Input() error: boolean;
   @Input() disabledInput: boolean = false;
-  @Input() mask: string;
   @Input() prefix: string = '';
   @Input() inputStyle: any = {}
-  @Input() smallInput: boolean = false
-  @Input() inputMaxLength: number = null
   @Input() searchInput: boolean = false
   @Input() rightIcon: baseIcon = null
   @Input() leftIcon: baseIcon = null
   @Input() focusEmitter: EventEmitter<void>
+  @Input() autoCompleteItems: string[] = []
 
   @Output() enterClicked: EventEmitter<void> = new EventEmitter<void>()
   @Output() rightIconClicked: EventEmitter<void> = new EventEmitter<void>()
   @Output() leftIconClicked: EventEmitter<void> = new EventEmitter<void>()
-
+  @Output() autoCompleteScrolled: EventEmitter<void> = new EventEmitter<void>()
+  @Output() autoCompleteItemPicked: EventEmitter<string> = new EventEmitter<string>()
 
   public onEnterPress(): void {
     this.enterClicked.emit()
@@ -65,4 +67,11 @@ export class BaseInputComponent {
     return this.leftIcon ? '42' : '15'
   }
 
+  public trackAutoComplete: TrackByFunction<string> = (index, item) => {
+    return item
+  }
+
+  public onAutoCompleteItemClick(auto_item: string): void {
+    this.autoCompleteItemPicked.emit(auto_item)
+  }
 }

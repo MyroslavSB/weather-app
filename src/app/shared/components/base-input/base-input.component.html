@@ -16,8 +16,7 @@
       [formControl]="control"
       [readOnly]="disabledInput"
       [placeholder]="placeholder"
-      [class]="{error, disabledInput, smallInput, searchInput}"
-      [attr.maxlength]="inputMaxLength ? inputMaxLength : 524288"
+      [class]="{error, disabledInput, searchInput}"
       [style]="inputStyle"
       [ngStyle]="{
       'padding-right': rightPadding,
@@ -35,6 +34,15 @@
       ></app-base-icon>
     </div>
 
+  </div>
+
+  <div class="field__auto">
+    <div class="field__auto-item"
+         *ngFor="let auto_item of autoCompleteItems; trackBy: trackAutoComplete"
+         (click)="onAutoCompleteItemClick(auto_item)"
+    >
+      <ng-container *ngTemplateOutlet="autoCompleteItemTemplate; context: {$implicit: auto_item}"></ng-container>
+    </div>
   </div>
 </div>
 

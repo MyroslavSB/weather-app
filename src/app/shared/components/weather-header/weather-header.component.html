@@ -11,7 +11,15 @@
       <app-base-input
         [control]="searchControl"
         [placeholder]="'Search for some location...'"
-      ></app-base-input>
+        [autoCompleteItems]="autoCompleteCities"
+        (autoCompleteItemPicked)="onCityPicked($event)"
+      >
+        <ng-template let-city>
+          <div class="header__city subtitle-1">
+            {{city.name}}
+          </div>
+        </ng-template>
+      </app-base-input>
     </div>
 
   </div>

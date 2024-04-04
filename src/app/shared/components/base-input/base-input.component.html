@@ -36,7 +36,7 @@
 
   </div>
 
-  <div class="field__auto">
+  <div class="field__auto" *ngIf="showAutoComplete">
     <div class="field__auto-item"
          *ngFor="let auto_item of autoCompleteItems; trackBy: trackAutoComplete"
          (click)="onAutoCompleteItemClick(auto_item)"

@@ -22,7 +22,7 @@ import {CommonModule} from "@angular/common";
   ],
   standalone: true
 })
-export class BaseInputComponent {
+export class BaseInputComponent<AutoCompleteTypes> {
 
   @ContentChild(TemplateRef) autoCompleteItemTemplate: TemplateRef<any>
   @ViewChild('inputElement') inputEL: ElementRef
@@ -39,13 +39,13 @@ export class BaseInputComponent {
   @Input() rightIcon: baseIcon = null
   @Input() leftIcon: baseIcon = null
   @Input() focusEmitter: EventEmitter<void>
-  @Input() autoCompleteItems: string[] = []
+  @Input() autoCompleteItems: AutoCompleteTypes[] = []
 
   @Output() enterClicked: EventEmitter<void> = new EventEmitter<void>()
   @Output() rightIconClicked: EventEmitter<void> = new EventEmitter<void>()
   @Output() leftIconClicked: EventEmitter<void> = new EventEmitter<void>()
   @Output() autoCompleteScrolled: EventEmitter<void> = new EventEmitter<void>()
-  @Output() autoCompleteItemPicked: EventEmitter<string> = new EventEmitter<string>()
+  @Output() autoCompleteItemPicked: EventEmitter<AutoCompleteTypes> = new EventEmitter<AutoCompleteTypes>()
 
   public onEnterPress(): void {
     this.enterClicked.emit()
@@ -59,19 +59,23 @@ export class BaseInputComponent {
     this.leftIconClicked.emit()
   }
 
+  public trackAutoComplete: TrackByFunction<string> = (index, item) => {
+    return item
+  }
+
+  public onAutoCompleteItemClick(auto_item: AutoCompleteTypes): void {
+    this.autoCompleteItemPicked.emit(auto_item)
+  }
+
+  public get showAutoComplete(): boolean {
+    return this.autoCompleteItems.length > 0
+  }
+
   public get rightPadding(): string {
     return this.rightIcon ? '47px' : '12px'
   }
 
   public get leftPadding(): string {
     return this.leftIcon ? '42' : '15'
-  }
-
-  public trackAutoComplete: TrackByFunction<string> = (index, item) => {
-    return item
-  }
-
-  public onAutoCompleteItemClick(auto_item: string): void {
-    this.autoCompleteItemPicked.emit(auto_item)
   }
 }

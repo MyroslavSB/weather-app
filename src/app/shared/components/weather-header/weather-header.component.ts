@@ -4,7 +4,7 @@ import {BaseInputComponent} from "../base-input/base-input.component";
 import {FormControl} from "@angular/forms";
 import {BaseIconComponent} from "../base-icon/base-icon.component";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {debounceTime, distinctUntilChanged, switchMap} from "rxjs";
+import {debounceTime, switchMap} from "rxjs";
 import {GeocodingApiService} from "../../../services/geocoding-api.service";
 import {Params} from "@angular/router";
 import {ICity} from "../../interfaces/services/locations-api/i-city";
@@ -52,5 +52,9 @@ export class WeatherHeaderComponent implements OnInit {
       this.autoCompleteCities = cities
       this.cdRef.detectChanges()
     })
+  }
+
+  public onCityPicked(city: ICity): void {
+    console.log(city)
   }
 }

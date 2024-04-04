@@ -1,0 +1,13 @@
+{
+  "verbose": true,
+  "srcFiles": ["./src/assets/icons/*.svg"],
+  "outputDirectory": "./src/base-icons",
+  "fileName": "base-icons",
+  "interfaceName": "BaseIcon",
+  "typeName": "baseIcon",
+  "prefix": "baseIcons",
+  "exportCompleteIconSet": true,
+  "svgoConfig": {
+    "plugins": ["cleanupAttrs"]
+  }
+}

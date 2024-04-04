@@ -6,15 +6,17 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {ApiKeyInterceptor} from "./shared/interceptors/api-key.interceptor";
 import {GeocodingApiService} from "./services/geocoding-api.service";
+import {WeatherHeaderComponent} from "./shared/components/weather-header/weather-header.component";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        WeatherHeaderComponent
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

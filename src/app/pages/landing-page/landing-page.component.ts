@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {BaseIconComponent} from "../../shared/components/base-icon.component";
+import {BaseIconComponent} from "../../shared/components/base-icon/base-icon.component";
 import {LocationService} from "../../services/location.service";
 
 @Component({

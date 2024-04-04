@@ -1,0 +1,40 @@
+<div class="field">
+
+  <div class="field-wrapper">
+    <div class="left-icon icon"
+         *ngIf="leftIcon"
+    >
+      <app-base-icon
+        [name]="leftIcon"
+        (click)="onLeftIconClick()"
+      ></app-base-icon>
+
+    </div>
+
+    <input
+      #inputElement
+      [formControl]="control"
+      [readOnly]="disabledInput"
+      [placeholder]="placeholder"
+      [class]="{error, disabledInput, smallInput, searchInput}"
+      [attr.maxlength]="inputMaxLength ? inputMaxLength : 524288"
+      [style]="inputStyle"
+      [ngStyle]="{
+      'padding-right': isPassword || rightIcon ? '47px' : '12px',
+      'padding-left': searchInput ? '42px' : '15px'
+      }"
+      (keydown.enter)="onEnterPress()"
+
+    />
+    <div class="right-icon icon"
+         *ngIf="rightIcon"
+    >
+      <app-base-icon
+        [name]="rightIcon"
+        (click)="onRightIconClick()"
+      ></app-base-icon>
+    </div>
+
+  </div>
+</div>
+

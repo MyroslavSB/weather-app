@@ -24,6 +24,7 @@ export class WeatherHeaderComponent implements OnInit {
 
   public autoCompleteCities: ICity[] = []
 
+
   constructor(
     private geocodingAPI: GeocodingApiService,
     private cdRef: ChangeDetectorRef

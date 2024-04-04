@@ -2,14 +2,15 @@ import {
   Component, ContentChild,
   ElementRef,
   EventEmitter,
-  Input,
-  Output, TemplateRef, TrackByFunction,
+  Input, OnChanges,
+  Output, SimpleChanges, TemplateRef, TrackByFunction,
   ViewChild
 } from '@angular/core';
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {baseIcon} from "../../../../base-icons/base-icons";
 import {BaseIconComponent} from "../base-icon/base-icon.component";
 import {CommonModule} from "@angular/common";
+import {OuterClickDirective} from "../../directives/outer-click.directive";
 
 @Component({
   selector: 'app-base-input',
@@ -18,11 +19,12 @@ import {CommonModule} from "@angular/common";
   imports: [
     BaseIconComponent,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OuterClickDirective
   ],
   standalone: true
 })
-export class BaseInputComponent<AutoCompleteTypes> {
+export class BaseInputComponent<AutoCompleteTypes> implements OnChanges {
 
   @ContentChild(TemplateRef) autoCompleteItemTemplate: TemplateRef<any>
   @ViewChild('inputElement') inputEL: ElementRef
@@ -47,6 +49,15 @@ export class BaseInputComponent<AutoCompleteTypes> {
   @Output() autoCompleteScrolled: EventEmitter<void> = new EventEmitter<void>()
   @Output() autoCompleteItemPicked: EventEmitter<AutoCompleteTypes> = new EventEmitter<AutoCompleteTypes>()
 
+
+  private showAutoComplete: boolean = true
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['autoCompleteItems']) {
+      this.showAutoComplete = true
+    }
+  }
+
   public onEnterPress(): void {
     this.enterClicked.emit()
   }
@@ -67,8 +78,8 @@ export class BaseInputComponent<AutoCompleteTypes> {
     this.autoCompleteItemPicked.emit(auto_item)
   }
 
-  public get showAutoComplete(): boolean {
-    return this.autoCompleteItems.length > 0
+  public get showAutoCompleteList(): boolean {
+    return this.autoCompleteItems.length > 0 && this.showAutoComplete
   }
 
   public get rightPadding(): string {
@@ -77,5 +88,13 @@ export class BaseInputComponent<AutoCompleteTypes> {
 
   public get leftPadding(): string {
     return this.leftIcon ? '42' : '15'
+  }
+
+  public onOuterClick(outer: boolean): void {
+    this.showAutoComplete = outer
+  }
+
+  public onInputFocus(focus: FocusEvent) {
+    this.showAutoComplete = true
   }
 }

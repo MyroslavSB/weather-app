@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
+
+  public userLocation: BehaviorSubject<GeolocationPosition> = new BehaviorSubject<GeolocationPosition>(null)
 
   public getCurrentLocation(): Observable<GeolocationPosition> {
     return new Observable(observer => {
@@ -23,4 +25,9 @@ export class LocationService {
       }
     });
   }
+
+  public setUserLocation(location: GeolocationPosition): void {
+    this.userLocation.next(location)
+  }
+
 }

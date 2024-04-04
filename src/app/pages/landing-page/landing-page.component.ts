@@ -2,9 +2,6 @@ import {ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit} from '@a
 import {CommonModule} from '@angular/common';
 import {BaseIconComponent} from "../../../base-icons/base-icon.component";
 import {LocationService} from "../../services/location.service";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {catchError, EMPTY, takeUntil} from "rxjs";
-
 @Component({
   selector: 'app-landing-page',
   standalone: true,
@@ -13,26 +10,12 @@ import {catchError, EMPTY, takeUntil} from "rxjs";
   styleUrls: ['./landing-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LandingPageComponent implements OnInit {
-  private destroyRef: DestroyRef = inject(DestroyRef)
-
+export class LandingPageComponent {
+  public userLocation$ = this.locationService.userLocation.asObservable()
 
   constructor(
     private locationService: LocationService
   ) {
   }
 
-  ngOnInit() {
-    this.locationService.getCurrentLocation()
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        catchError(err => {
-          console.error(err)
-          return EMPTY
-        })
-      ).subscribe(location => {
-        console.log(location)
-    })
-
-  }
 }

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Optional} from '@angular/core';
 import {CommonModule, DOCUMENT} from '@angular/common';
-import {BaseIconsRegistryService} from "../app/services/base-icons-registry.service";
-import {baseIcon, BaseIcon} from "./base-icons";
+import {BaseIconsRegistryService} from "../../services/base-icons-registry.service";
+import {baseIcon, BaseIcon} from "../../../base-icons/base-icons";
 
 @Component({
   selector: 'app-base-icon',

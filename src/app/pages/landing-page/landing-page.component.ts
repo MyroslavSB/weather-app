@@ -1,7 +1,8 @@
-import {ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {BaseIconComponent} from "../../../base-icons/base-icon.component";
+import {BaseIconComponent} from "../../shared/components/base-icon.component";
 import {LocationService} from "../../services/location.service";
+
 @Component({
   selector: 'app-landing-page',
   standalone: true,

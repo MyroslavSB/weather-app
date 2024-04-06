@@ -13,65 +13,7 @@ import {AppRoutes} from "./shared/const/routes";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'WeatherApp';
 
-  private destroyRef: DestroyRef = inject(DestroyRef)
-
-  public isLoading = false
-
-  private appRoutes = AppRoutes
-
-  constructor(
-    public iconsRegistry: BaseIconsRegistryService,
-    private locationService: LocationService,
-    private geocodingApi: GeocodingApiService,
-    private router: Router
-  ) {
-    this.iconsRegistry.registerIcons(completeIconSet)
-  }
-
-  ngOnInit() {
-    this.getUserCity()
-
-  }
-
-  private getUserCity(): void {
-    this.isLoading = true
-    this.locationService.getCurrentLocation()
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        catchError(err => {
-          console.error(err)
-          this.router.navigateByUrl(this.appRoutes.city.routerPath)
-          this.isLoading = false
-          return EMPTY
-        }),
-        switchMap(location => {
-          const params = {
-            lat: location.coords.latitude,
-            lon: location.coords.longitude
-          }
-
-          return this.geocodingApi.getPotentialUserCities(params)
-            .pipe(
-              takeUntilDestroyed(this.destroyRef),
-              catchError(err => {
-                console.error(err)
-                this.router.navigateByUrl(this.appRoutes.city.routerPath)
-                this.isLoading = false
-                return EMPTY
-              }),
-            )
-        })
-      ).subscribe(cities => {
-      if (cities.length === 0) {
-        this.isLoading = false
-        return
-      }
-
-      this.locationService.userCity.next(cities[0])
-      this.isLoading = false
-    })
-  }
 }

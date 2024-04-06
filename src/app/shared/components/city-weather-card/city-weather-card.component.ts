@@ -1,7 +1,5 @@
 import {ChangeDetectionStrategy, Component, DestroyRef, inject, Input, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ActivatedRoute} from "@angular/router";
-import {LocationService} from "../../../services/location.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {ICity} from "../../interfaces/services-interfaces/i-city";
 import {filter, Observable, switchMap} from "rxjs";
@@ -21,7 +19,8 @@ export class CityWeatherCardComponent implements OnInit {
   @Input({required: true}) city: Observable<ICity>
   private destroyRef$ = inject(DestroyRef)
 
-
+  public activeTab: any
+  public cardTabs: any[] = []
 
   constructor(
     private weatherAPI: WeatherApiService
@@ -39,17 +38,19 @@ export class CityWeatherCardComponent implements OnInit {
         filter(city => !!city),
         switchMap(city => {
           console.log(city)
+
           const params: ClimateForecastParams = {
             lat: city.lat,
             lon: city.lon,
             units: 'metric',
-            cnt: 16
+            cnt: 1
           }
+
           return this.weatherAPI.getClimateForecast(params)
             .pipe(takeUntilDestroyed(this.destroyRef$))
         })
       ).subscribe(forecast => {
-
+      console.log(forecast)
     })
   }
 

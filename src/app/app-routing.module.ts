@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: AppRoutes.city.routerPath,
-    loadComponent: () => import('./pages/main-page/main-page.component').then(mod => mod.MainPageComponent),
+    loadComponent: () => import('./pages/city-page/city-page.component').then(mod => mod.CityPageComponent),
     pathMatch: 'full'
   },
   {

@@ -1,8 +1,17 @@
 <div class="landing-page">
 
-  <div class="landing-page__main">
-    <app-city-weather-card
-    [city]="userCity$"
-    ></app-city-weather-card>
-  </div>
+  <ng-container *ngIf="isLoading;else main">
+    <div class="loader-container">
+      app is loading...
+    </div>
+  </ng-container>
+
+  <ng-template #main>
+    <div class="landing-page__main">
+      <app-city-weather-card
+        [city]="userCity$"
+      ></app-city-weather-card>
+    </div>
+  </ng-template>
+
 </div>

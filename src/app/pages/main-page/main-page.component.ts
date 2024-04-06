@@ -29,12 +29,10 @@ export class MainPageComponent implements OnInit {
   private appRoutes = AppRoutes
 
   constructor(
-    public iconsRegistry: BaseIconsRegistryService,
     private locationService: LocationService,
     private geocodingApi: GeocodingApiService,
     private router: Router
   ) {
-    this.iconsRegistry.registerIcons(completeIconSet)
   }
 
   ngOnInit() {

@@ -7,7 +7,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {debounceTime, switchMap} from "rxjs";
 import {GeocodingApiService} from "../../../services/geocoding-api.service";
 import {Params} from "@angular/router";
-import {ICity} from "../../interfaces/services/locations-api/i-city";
+import {ICity} from "../../interfaces/services-interfaces/i-city";
 
 @Component({
   selector: 'app-weather-header',

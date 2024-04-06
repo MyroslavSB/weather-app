@@ -3,7 +3,7 @@ import {AbstractHttpComponent} from "../shared/abstract/abstract-http-component"
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Params} from "@angular/router";
-import {ICity} from "../shared/interfaces/services/locations-api/i-city";
+import {ICity} from "../shared/interfaces/services-interfaces/i-city";
 import {EApiUrls} from "../shared/enums/e-api-urls";
 
 @Injectable({

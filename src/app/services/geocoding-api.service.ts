@@ -4,7 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Params} from "@angular/router";
 import {ICity} from "../shared/interfaces/services-interfaces/i-city";
-import {EApiUrls} from "../shared/enums/e-api-urls";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +17,10 @@ export class GeocodingApiService extends AbstractHttpComponent {
   }
 
   public getCitiesByParams(params: Params = {}): Observable<ICity[]> {
-    return this.httpGetRequest(EApiUrls.GEOCODING_API, params)
+    return this.httpGetRequest(this.apiUrls.GEOCODING_API, params)
+  }
+
+  public getPotentialUserCities(params: Params): Observable<ICity[]> {
+    return this.httpGetRequest(this.apiUrls.REVERSE_GEOCODING_API, params)
   }
 }

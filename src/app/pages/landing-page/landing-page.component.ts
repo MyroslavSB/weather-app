@@ -7,8 +7,7 @@ import {filter, switchMap} from "rxjs";
 import {CityWeatherCardComponent} from "../../shared/components/city-weather-card/city-weather-card.component";
 import {WeatherApiService} from "../../services/weather-api.service";
 import {
-  ClimateForecastParams,
-  DefaultWeatherParams
+  ClimateForecastParams
 } from "../../shared/interfaces/services-interfaces/get-weather-params";
 
 @Component({
@@ -22,7 +21,7 @@ import {
 export class LandingPageComponent implements OnInit {
   private destroyRef$: DestroyRef = inject(DestroyRef)
 
-  public userLocation$ = this.locationService.userLocation.asObservable()
+  public userLocation$ = this.locationService.userCity.asObservable()
 
   constructor(
     private locationService: LocationService,
@@ -35,22 +34,22 @@ export class LandingPageComponent implements OnInit {
   }
 
   private subOnLocation(): void {
-    this.locationService.userLocation
-      .pipe(
-        takeUntilDestroyed(this.destroyRef$),
-        filter(location => !!location),
-        switchMap(location => {
-          const params: ClimateForecastParams = {
-            lat: location.coords.latitude,
-            lon: location.coords.longitude,
-            units: 'metric',
-            cnt: 16
-          }
-          return this.weatherAPI.getClimateForecast(params)
-            .pipe(takeUntilDestroyed(this.destroyRef$))
-        })
-      ).subscribe(location => {
-
-      })
+    // this.locationService.userCity
+    //   .pipe(
+    //     takeUntilDestroyed(this.destroyRef$),
+    //     filter(location => !!location),
+    //     switchMap(location => {
+    //       // const params: ClimateForecastParams = {
+    //       //   lat: location.coords.latitude,
+    //       //   lon: location.coords.longitude,
+    //       //   units: 'metric',
+    //       //   cnt: 16
+    //       // }
+    //       return this.weatherAPI.getClimateForecast(params)
+    //         .pipe(takeUntilDestroyed(this.destroyRef$))
+    //     })
+    //   ).subscribe(location => {
+    //
+    //   })
   }
 }

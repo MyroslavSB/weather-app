@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
+import {ICity} from "../shared/interfaces/services-interfaces/i-city";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
 
-  public userLocation: BehaviorSubject<GeolocationPosition> = new BehaviorSubject<GeolocationPosition>(null)
+  public userCity: BehaviorSubject<ICity> = new BehaviorSubject<ICity>(null)
 
   public getCurrentLocation(): Observable<GeolocationPosition> {
     return new Observable(observer => {
@@ -24,10 +25,6 @@ export class LocationService {
         observer.error('Geolocation is not supported by this browser.');
       }
     });
-  }
-
-  public setUserLocation(location: GeolocationPosition): void {
-    this.userLocation.next(location)
   }
 
 }

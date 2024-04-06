@@ -1,0 +1,8 @@
+<div class="base-tabs">
+  <div class="base-tabs__tab subtitle-1"
+       *ngFor="let tab of tabsConfig"
+       [ngClass]="{'active-tab': activeTab.value === tab.value}"
+       (click)="tabPick.emit(tab)">
+    {{tab.display ? tab.display : tab}}
+  </div>
+</div>

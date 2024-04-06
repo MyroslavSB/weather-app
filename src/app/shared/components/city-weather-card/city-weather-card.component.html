@@ -1,1 +1,27 @@
-<p>{{ (city | async)?.name }}</p>
+<div class="weather-card">
+  <div class="weather-card__main">
+    <div class="weather-card__main-heading">
+      <h2 class="weather-card__main-title headline-1">Weather in {{ (city | async)?.name }}</h2>
+      <h3 class="weather-card__main-state subtitle-1">{{ (city | async)?.state }}</h3>
+
+    </div>
+
+
+    <div class="weather-card__main-tabs">
+      <div class="weather-card__main-tabs-container">
+        <app-base-tabs
+          [tabsConfig]="cardTabs"
+          [activeTab]="activeTab"
+          (tabPick)="onTabPick($event)"
+        ></app-base-tabs>
+      </div>
+
+    </div>
+
+    <div class="weather-card__main-content">
+      <ng-container [ngSwitch]="activeTab">
+<!--        <ng-container *ngSwitchCase=""></ng-container>-->
+      </ng-container>
+    </div>
+  </div>
+</div>

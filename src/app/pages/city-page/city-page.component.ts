@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import {CityWeatherCardComponent} from "../../shared/components/city-weather-card/city-weather-card.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {BehaviorSubject, Observable, Subject, switchMap} from "rxjs";
+import {Subject, switchMap} from "rxjs";
 import {GeocodingApiService} from "../../services/geocoding-api.service";
 import {ICity} from "../../shared/interfaces/services-interfaces/i-city";
-import {AppRoutes} from "../../shared/const/routes";
 
 @Component({
   selector: 'app-city-page',

@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {AppRoutes} from "./shared/const/routes";
 
 const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/landing-page/landing-page.component').then(mod => mod.LandingPageComponent)
+    loadComponent: () => import('./pages/main-page/main-page.component').then(mod => mod.MainPageComponent),
+    pathMatch: 'full'
+  },
+  {
+    path: AppRoutes.city.routerPath,
+    loadComponent: () => import('./pages/main-page/main-page.component').then(mod => mod.MainPageComponent),
+    pathMatch: 'full'
   },
   {
     path: '**',

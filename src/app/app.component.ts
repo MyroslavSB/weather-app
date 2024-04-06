@@ -5,6 +5,8 @@ import {LocationService} from "./services/location.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {catchError, EMPTY, switchMap} from "rxjs";
 import {GeocodingApiService} from "./services/geocoding-api.service";
+import {Router} from "@angular/router";
+import {AppRoutes} from "./shared/const/routes";
 
 @Component({
   selector: 'app-root',
@@ -16,10 +18,15 @@ export class AppComponent implements OnInit {
 
   private destroyRef: DestroyRef = inject(DestroyRef)
 
+  public isLoading = false
+
+  private appRoutes = AppRoutes
+
   constructor(
     public iconsRegistry: BaseIconsRegistryService,
     private locationService: LocationService,
     private geocodingApi: GeocodingApiService,
+    private router: Router
   ) {
     this.iconsRegistry.registerIcons(completeIconSet)
   }
@@ -30,11 +37,14 @@ export class AppComponent implements OnInit {
   }
 
   private getUserCity(): void {
+    this.isLoading = true
     this.locationService.getCurrentLocation()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         catchError(err => {
           console.error(err)
+          this.router.navigateByUrl(this.appRoutes.city.routerPath)
+          this.isLoading = false
           return EMPTY
         }),
         switchMap(location => {
@@ -44,10 +54,24 @@ export class AppComponent implements OnInit {
           }
 
           return this.geocodingApi.getPotentialUserCities(params)
-            .pipe(takeUntilDestroyed(this.destroyRef))
+            .pipe(
+              takeUntilDestroyed(this.destroyRef),
+              catchError(err => {
+                console.error(err)
+                this.router.navigateByUrl(this.appRoutes.city.routerPath)
+                this.isLoading = false
+                return EMPTY
+              }),
+            )
         })
       ).subscribe(cities => {
-        this.locationService.userCity.next(cities[0])
+      if (cities.length === 0) {
+        this.isLoading = false
+        return
+      }
+
+      this.locationService.userCity.next(cities[0])
+      this.isLoading = false
     })
   }
 }

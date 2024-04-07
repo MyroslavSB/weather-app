@@ -1,6 +1,6 @@
 import {IWeatherCity, IWeatherDay} from "./utils-models";
 
-export interface IClimateForecastResponse {
+export interface IWeatherForecastResponse {
   city: IWeatherCity;
   cod: string;
   message: number;

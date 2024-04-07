@@ -7,15 +7,15 @@ import {WeatherApiService} from "../../../services/weather-api.service";
 import {ClimateForecastParams} from "../../interfaces/services-interfaces/get-weather-params";
 import {BaseTabsComponent} from "../base-tabs/base-tabs.component";
 import {INavTab} from "../../interfaces/i-nav-tab";
-import {TabsConfig} from "./utils/tabs-config";
+import {TabsConfig} from "./utils/const/tabs-config";
 import {EWeatherTabs} from "./utils/e-weather-tabs";
 import {IClimateForecastResponse} from "../../interfaces/services-interfaces/responses/i-climate-forecast-response";
-import {WeatherTabComponent} from "./components/weather-tab/weather-tab.component";
+import {SingleDayWeatherTab} from "./components/weather-tab/single-day-weather-tab.component";
 
 @Component({
   selector: 'app-city-weather-card',
   standalone: true,
-  imports: [CommonModule, BaseTabsComponent, WeatherTabComponent],
+  imports: [CommonModule, BaseTabsComponent, SingleDayWeatherTab],
   templateUrl: './city-weather-card.component.html',
   styleUrls: ['./city-weather-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

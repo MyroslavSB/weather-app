@@ -1,28 +1,17 @@
 import {Directive, Input} from "@angular/core";
 import {IWeatherDay} from "../../../interfaces/services-interfaces/responses/utils-models";
+import {IDayWeatherUi} from "../utils/i-day-weather-ui";
+import {DefaultDayWeatherUi} from "../utils/const/default-day-weather-ui";
+import {processDataIntoUi} from "../utils/process-data-into-ui";
 
 
 // made abstract class for potential future extensions
 @Directive()
 export abstract class AbstractWeatherTabComponent {
-  @Input({required: true})
-  weatherDaysList: IWeatherDay[]
+  public currentDayWeatherUI: IDayWeatherUi = DefaultDayWeatherUi
 
-  @Input()
-  singleDayForecast: boolean = true
-
-  @Input()
-  singleDayIndex: number = 0
-
-  public thermometerStamps: number[] = [
-    40, 20, 0, -20, -40
-  ]
-
-  public get activeSingleDay(): IWeatherDay {
-    if (!this.weatherDaysList || this.weatherDaysList?.length < 1) {
-      return null
-    }
-
-    return this.weatherDaysList[this.singleDayIndex] || this.weatherDaysList[0]
+  protected setDayWeatherUi(data: IWeatherDay): void {
+      this.currentDayWeatherUI = processDataIntoUi(data)
   }
+
 }

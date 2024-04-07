@@ -1,5 +1,5 @@
-import {INavTab} from "../../../interfaces/i-nav-tab";
-import {EWeatherTabs} from "./e-weather-tabs";
+import {INavTab} from "../../../../interfaces/i-nav-tab";
+import {EWeatherTabs} from "../e-weather-tabs";
 
 export const TabsConfig: INavTab<EWeatherTabs>[] = [
   {

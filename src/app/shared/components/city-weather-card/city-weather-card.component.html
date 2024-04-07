@@ -21,13 +21,13 @@
       <ng-container [ngSwitch]="activeTab.value">
         <ng-container *ngSwitchCase="weatherTabs.TODAY">
           <app-weather-tab
-            [weatherData]="currentForecast?.list[0]"
+            [weatherData]="currentDayForecast"
           ></app-weather-tab>
         </ng-container>
 
         <ng-container *ngSwitchCase="weatherTabs.TOMORROW">
           <app-weather-tab
-            [weatherData]="currentForecast?.list[1]"
+            [weatherData]="multipleDaysForecast?.list[1]"
             [singleDayIndex]="1"
           ></app-weather-tab>
         </ng-container>

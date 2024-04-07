@@ -22,13 +22,23 @@
           </div>
 
           <div class="weather-tab__temperature-thermometer-bar"
-               [style.height]="currentDayWeatherUI?.max | barHeight : -40 : 40 : 'percentage_string'"
+               [style.height]="currentDayWeatherUI?.current_temp | barHeight : -40 : 40 : 'percentage_string'"
           ></div>
         </div>
 
 
-        <p class="weather-tab__temperature-title subtitle-1">Temperature
-          <br> {{ currentDayWeatherUI.max | temperature }}</p>
+        <div>
+          <p class="weather-tab__temperature-section subtitle-1">
+            Current temperature
+            <br> {{ currentDayWeatherUI.current_temp | temperature }}
+          </p>
+
+          <p class="weather-tab__temperature-section subtitle-1" *ngIf="currentDayWeatherUI.wind_speed">
+            Wind speed
+            <!--          <br> {{ currentDayWeatherUI.current_temp | temperature }}-->
+          </p>
+        </div>
+
       </div>
 
       <div class="weather-tab__stats">
@@ -41,7 +51,6 @@
           <span class="weather-tab__stats-temp-span">max. </span> {{ currentDayWeatherUI.max | temperature }}
         </p>
 
-        <!--        {{activeSingleDay.}}-->
       </div>
     </div>
 

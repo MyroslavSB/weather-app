@@ -4,6 +4,7 @@ import {AbstractWeatherTabComponent} from "../abstract-weather-tab-component";
 import {BarHeightPipe} from "../../../../pipes/bar-height.pipe";
 import {TemperaturePipe} from "../../../../pipes/temperature.pipe";
 import {IWeatherDay} from "../../../../interfaces/services-interfaces/responses/utils-models";
+import {ICurrentWeatherResponse} from "../../../../interfaces/services-interfaces/responses/i-current-weather-response";
 
 @Component({
   selector: 'app-weather-tab',
@@ -15,7 +16,7 @@ import {IWeatherDay} from "../../../../interfaces/services-interfaces/responses/
 })
 export class SingleDayWeatherTab extends AbstractWeatherTabComponent implements OnChanges {
   @Input({required: true})
-  weatherData: IWeatherDay
+  weatherData: IWeatherDay | ICurrentWeatherResponse
 
   @Input()
   singleDayForecast: boolean = true

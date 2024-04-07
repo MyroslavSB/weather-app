@@ -1,0 +1,37 @@
+<div class="weather-tab">
+  <ng-container *ngIf="singleDayForecast">
+    <div class="weather-tab__single">
+      <div class="weather-tab__time">
+        <div class="weather-tab__time-date headline-1">
+          {{ activeSingleDay?.dt | date : 'MMMM d, y' }}
+        </div>
+
+        <div class="weather-tab__time-sun subtitle-1">
+          Sunrise {{ activeSingleDay?.sunrise | date : 'shortTime' }} <br>
+          Sunset {{ activeSingleDay?.sunset | date : 'shortTime' }}
+        </div>
+      </div>
+
+      <div class="weather-tab__temperature">
+        <div class="weather-tab__temperature-thermometer">
+
+          <div class="weather-tab__temperature-thermometer-stamp" *ngFor="let stamp of thermometerStamps">
+            {{stamp}}
+
+            <hr>
+          </div>
+
+         <div class="weather-tab__temperature-thermometer-bar"
+              [style.height]="activeSingleDay?.temp.max | barHeight : -40 : 40 : 'percentage_string'"
+         ></div>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngIf="!singleDayForecast">
+
+  </ng-container>
+</div>
+

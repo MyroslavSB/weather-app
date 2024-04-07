@@ -1,0 +1,58 @@
+@import "src/assets/styles/shared/vars";
+
+.weather-tab {
+  border: 1px solid $bg-middle;
+  border-radius: 4px;
+  padding: 12px 20px;
+
+  &__single {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__time {
+    &-date {
+      color: $text-main;
+      margin-bottom: 16px;
+    }
+
+    &-sun {
+      border-radius: 3px;
+      border: 0.5px solid $bg-middle;
+      padding: 6px 10px;
+      width: max-content;
+      color: $text-third;
+    }
+  }
+
+  &__temperature {
+    &-thermometer {
+      position: relative;
+      horiz-align: right;
+
+      &-stamp {
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: flex-end;
+
+        hr {
+          background: $text-main;
+          margin-left: 16px;
+          transform: rotate(90deg);
+        }
+      }
+
+      &-bar {
+        position: absolute;
+        right: -3px;
+        bottom: 0;
+        border-radius: 8px;
+        width: 8px;
+        z-index: 1;
+        background: $warning;
+      }
+
+
+    }
+  }
+}

@@ -8,11 +8,14 @@ import {ClimateForecastParams} from "../../interfaces/services-interfaces/get-we
 import {BaseTabsComponent} from "../base-tabs/base-tabs.component";
 import {INavTab} from "../../interfaces/i-nav-tab";
 import {TabsConfig} from "./utils/tabs-config";
+import {EWeatherTabs} from "./utils/e-weather-tabs";
+import {IClimateForecastResponse} from "../../interfaces/services-interfaces/responses/i-climate-forecast-response";
+import {WeatherTabComponent} from "./components/weather-tab/weather-tab.component";
 
 @Component({
   selector: 'app-city-weather-card',
   standalone: true,
-  imports: [CommonModule, BaseTabsComponent],
+  imports: [CommonModule, BaseTabsComponent, WeatherTabComponent],
   templateUrl: './city-weather-card.component.html',
   styleUrls: ['./city-weather-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -22,9 +25,13 @@ export class CityWeatherCardComponent implements OnInit {
   @Input({required: true}) city: Observable<ICity>
   private destroyRef$ = inject(DestroyRef)
 
-  public activeTab: INavTab<number> = TabsConfig[0]
+  public activeTab: INavTab<EWeatherTabs> = TabsConfig[0]
 
-  public cardTabs: INavTab<number>[] = TabsConfig
+  public cardTabs: INavTab<EWeatherTabs>[] = TabsConfig
+
+  public currentForecast: IClimateForecastResponse = null
+
+  public weatherTabs = EWeatherTabs
 
   constructor(
     private weatherAPI: WeatherApiService,
@@ -42,24 +49,33 @@ export class CityWeatherCardComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef$),
         filter(city => !!city),
         switchMap(city => {
-          console.log(city)
-
           const params: ClimateForecastParams = {
             lat: city.lat,
             lon: city.lon,
             units: 'metric',
-            cnt: 1
+            cnt: 16
           }
 
           return this.weatherAPI.getClimateForecast(params)
             .pipe(takeUntilDestroyed(this.destroyRef$))
         })
       ).subscribe(forecast => {
-      console.log(forecast)
+        // in response time is in seconds. so I need to multiply by 1000 to get milliseconds
+
+        forecast.list = forecast.list.map(day => ({
+          ...day,
+          dt: day.dt * 1000,
+          sunrise: day.sunrise * 1000,
+          sunset: day.sunset * 1000
+        }))
+
+      this.currentForecast = forecast
+
+      this.cdRef.detectChanges()
     })
   }
 
-  public onTabPick(tab: INavTab<number>): void {
+  public onTabPick(tab: INavTab<EWeatherTabs>): void {
     this.activeTab = tab
     this.cdRef.detectChanges()
   }

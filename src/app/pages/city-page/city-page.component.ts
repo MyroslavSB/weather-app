@@ -42,7 +42,6 @@ export class CityPageComponent implements OnInit {
           if (!params['city']) {
             this.router.navigateByUrl('')
           }
-          console.log(params['city'])
 
           const req_params = {
             q: params['city'],

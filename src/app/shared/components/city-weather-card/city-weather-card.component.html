@@ -6,7 +6,6 @@
 
     </div>
 
-
     <div class="weather-card__main-tabs">
       <div class="weather-card__main-tabs-container">
         <app-base-tabs
@@ -19,8 +18,26 @@
     </div>
 
     <div class="weather-card__main-content">
-      <ng-container [ngSwitch]="activeTab">
-<!--        <ng-container *ngSwitchCase=""></ng-container>-->
+      <ng-container [ngSwitch]="activeTab.value">
+        <ng-container *ngSwitchCase="weatherTabs.TODAY">
+          <app-weather-tab
+            [weatherDaysList]="currentForecast?.list"
+          ></app-weather-tab>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="weatherTabs.TOMORROW">
+          <app-weather-tab
+            [weatherDaysList]="currentForecast?.list"
+            [singleDayIndex]="1"
+          ></app-weather-tab>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="weatherTabs.ONE_WEEK">
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="weatherTabs.TWO_WEEKS"></ng-container>
+
       </ng-container>
     </div>
   </div>

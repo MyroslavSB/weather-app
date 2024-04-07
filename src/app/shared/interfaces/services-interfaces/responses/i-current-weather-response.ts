@@ -16,10 +16,4 @@ export interface ICurrentWeatherResponse {
   name: string;
   cod: number;
 }
-//timezone: string;
-//   timezone_offset: string;
-//   current?: any;
-//   minutely?: any;
-//   hourly?: any;
-//   daily?: any;
-//   alerts?: any[]
+

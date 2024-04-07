@@ -1,5 +1,4 @@
 <div class="weather-tab">
-  <ng-container *ngIf="singleDayForecast">
     <div class="weather-tab__single">
       <div class="weather-tab__time">
         <div class="weather-tab__time-date headline-1">
@@ -17,7 +16,7 @@
 
           <div class="weather-tab__temperature-thermometer-stamp" *ngFor="let stamp of thermometerStamps">
             <div class="hr">
-              <div class="text tiny-text">{{ stamp | temperature }}</div>
+              <div class="text tiny-text">{{ stamp | number : '1.0-1' | temperature }}</div>
             </div>
           </div>
 
@@ -29,8 +28,8 @@
 
         <div>
           <p class="weather-tab__temperature-section subtitle-1">
-            Current temperature
-            <br> {{ currentDayWeatherUI.current_temp | temperature }}
+            {{ tempText }}
+            <br> {{ currentDayWeatherUI.current_temp | number : '1.0-1' | temperature }}
           </p>
 
           <p class="weather-tab__temperature-section subtitle-1" *ngIf="currentDayWeatherUI.wind_speed">
@@ -45,19 +44,14 @@
         <p class="weather-tab__stats-title subtitle-1"> Temperature</p>
 
         <p class="weather-tab__stats-temp subtitle-1">
-          <span class="weather-tab__stats-temp-span">min. </span>{{ currentDayWeatherUI.min | temperature }}
+          <span class="weather-tab__stats-temp-span">min. </span>{{ currentDayWeatherUI.min | number : '1.0-1' | temperature }}
         </p>
         <p class="weather-tab__stats-temp subtitle-1">
-          <span class="weather-tab__stats-temp-span">max. </span> {{ currentDayWeatherUI.max | temperature }}
+          <span class="weather-tab__stats-temp-span">max. </span> {{ currentDayWeatherUI.max | number : '1.0-1' | temperature }}
         </p>
 
       </div>
     </div>
 
-  </ng-container>
-
-  <ng-container *ngIf="!singleDayForecast">
-
-  </ng-container>
 </div>
 

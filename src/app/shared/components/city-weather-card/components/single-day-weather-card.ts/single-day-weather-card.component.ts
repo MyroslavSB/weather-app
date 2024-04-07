@@ -10,19 +10,16 @@ import {ICurrentWeatherResponse} from "../../../../interfaces/services-interface
   selector: 'app-weather-tab',
   standalone: true,
   imports: [CommonModule, BarHeightPipe, TemperaturePipe],
-  templateUrl: './single-day-weather-tab.component.html',
-  styleUrls: ['./single-day-weather-tab.component.scss', '../abstract-weather-tab-component.scss'],
+  templateUrl: './single-day-weather-card.component.html',
+  styleUrls: ['./single-day-weather-card.component.scss', '../abstract-weather-tab-component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SingleDayWeatherTab extends AbstractWeatherTabComponent implements OnChanges {
+export class SingleDayWeatherCard extends AbstractWeatherTabComponent implements OnChanges {
   @Input({required: true})
   weatherData: IWeatherDay | ICurrentWeatherResponse
 
   @Input()
-  singleDayForecast: boolean = true
-
-  @Input()
-  singleDayIndex: number = 0
+  today: boolean = false
 
   public thermometerStamps: number[] = [
     40, 20, 0, -20, -40
@@ -33,4 +30,9 @@ export class SingleDayWeatherTab extends AbstractWeatherTabComponent implements 
       this.setDayWeatherUi(changes['weatherData'].currentValue)
     }
   }
+
+  public get tempText(): string {
+    return this.today ? 'Current temperature ' : 'Temperature at 14:00 '
+  }
+
 }

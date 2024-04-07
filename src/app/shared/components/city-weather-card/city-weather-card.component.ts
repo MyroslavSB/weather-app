@@ -10,7 +10,7 @@ import {INavTab} from "../../interfaces/i-nav-tab";
 import {TabsConfig} from "./utils/const/tabs-config";
 import {EWeatherTabs} from "./utils/e-weather-tabs";
 import {IWeatherForecastResponse} from "../../interfaces/services-interfaces/responses/i-weather-forecast-response";
-import {SingleDayWeatherTab} from "./components/weather-tab/single-day-weather-tab.component";
+import {SingleDayWeatherCard} from "./components/single-day-weather-card.ts/single-day-weather-card.component";
 import {ICurrentWeatherResponse} from "../../interfaces/services-interfaces/responses/i-current-weather-response";
 import {processCurrentWeatherResponse} from "./utils/process-current-weather-response";
 import {prepareParams} from "./utils/prepare-params";
@@ -18,7 +18,7 @@ import {prepareParams} from "./utils/prepare-params";
 @Component({
   selector: 'app-city-weather-card',
   standalone: true,
-  imports: [CommonModule, BaseTabsComponent, SingleDayWeatherTab],
+  imports: [CommonModule, BaseTabsComponent, SingleDayWeatherCard],
   templateUrl: './city-weather-card.component.html',
   styleUrls: ['./city-weather-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -89,18 +89,18 @@ export class CityWeatherCardComponent implements OnInit {
   public onTabPick(tab: INavTab<EWeatherTabs>): void {
     this.activeTab = tab
     this.cdRef.detectChanges()
-    const params: DefaultWeatherParams = prepareParams(this.currentCity)
-
-    if (tab.value === this.weatherTabs.TODAY) {
-      this.weatherAPI.getCurrentWeather(params)
-        .pipe(takeUntilDestroyed(this.destroyRef$))
-        .subscribe(currentWeather => {
-          currentWeather = processCurrentWeatherResponse(currentWeather)
-          this.currentDayForecast = currentWeather
-
-          this.cdRef.detectChanges()
-        })
-    }
+    // const params: DefaultWeatherParams = prepareParams(this.currentCity)
+    //
+    // if (tab.value === this.weatherTabs.TODAY) {
+    //   this.weatherAPI.getCurrentWeather(params)
+    //     .pipe(takeUntilDestroyed(this.destroyRef$))
+    //     .subscribe(currentWeather => {
+    //       currentWeather = processCurrentWeatherResponse(currentWeather)
+    //       this.currentDayForecast = currentWeather
+    //
+    //       this.cdRef.detectChanges()
+    //     })
+    // }
   }
 
 

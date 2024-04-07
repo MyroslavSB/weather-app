@@ -16,15 +16,31 @@
         <div class="weather-tab__temperature-thermometer">
 
           <div class="weather-tab__temperature-thermometer-stamp" *ngFor="let stamp of thermometerStamps">
-            {{stamp}}
-
-            <hr>
+            <div class="hr">
+              <div class="text tiny-text">{{stamp | temperature}}</div>
+            </div>
           </div>
 
          <div class="weather-tab__temperature-thermometer-bar"
               [style.height]="activeSingleDay?.temp.max | barHeight : -40 : 40 : 'percentage_string'"
          ></div>
         </div>
+
+
+        <p class="weather-tab__temperature-title subtitle-1">Temperature <br> {{activeSingleDay.temp.max | temperature}}</p>
+      </div>
+
+      <div class="weather-tab__stats">
+        <p class="weather-tab__stats-title subtitle-1"> Temperature</p>
+
+        <p class="weather-tab__stats-temp subtitle-1">
+          <span class="weather-tab__stats-temp-span">min. </span>{{activeSingleDay?.temp.min | temperature}}
+        </p>
+        <p class="weather-tab__stats-temp subtitle-1">
+          <span class="weather-tab__stats-temp-span">max. </span> {{activeSingleDay?.temp.max | temperature}}
+        </p>
+
+<!--        {{activeSingleDay.}}-->
       </div>
     </div>
 

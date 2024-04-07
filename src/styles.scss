@@ -20,3 +20,7 @@
 .subtitle-1 {
   @include font-base(14px, 400, 19px, normal, $roboto);
 }
+
+.tiny-text {
+  @include font-base(9px, 400, 12px, normal, $roboto);
+}

@@ -26,33 +26,62 @@
   }
 
   &__temperature {
+    display: flex;
+
     &-thermometer {
       position: relative;
-      horiz-align: right;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-right: 32px;
 
       &-stamp {
-        margin-bottom: 6px;
         display: flex;
         justify-content: flex-end;
 
-        hr {
+        .hr {
           background: $text-main;
-          margin-left: 16px;
-          transform: rotate(90deg);
+          height: 1px;
+          width: 18px;
+          border-radius: 8px;
+          position: relative;
+
+          .text {
+            position: absolute;
+            left: -25px;
+            bottom: -6px;
+          }
         }
       }
 
       &-bar {
         position: absolute;
-        right: -3px;
+        right: 6px;
         bottom: 0;
         border-radius: 8px;
-        width: 8px;
+        width: 5px;
         z-index: 1;
         background: $warning;
       }
 
 
+    }
+  }
+
+  &__stats {
+    &-title {
+      margin-bottom: 16px;
+    }
+
+    &-temp {
+      display: flex;
+      align-self: center;
+      color: $text-main;
+
+      &-span {
+        color: $text-fourth;
+        margin-right: 4px;
+      }
     }
   }
 }

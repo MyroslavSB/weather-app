@@ -8,6 +8,7 @@ export function processDataIntoUi(data: IWeatherDay | ICurrentWeatherResponse): 
     return DefaultDayWeatherUi
   }
 
+  // CurrentWeatherResponse
   if ('name' in data) {
     return {
       date: data.dt,
@@ -19,6 +20,7 @@ export function processDataIntoUi(data: IWeatherDay | ICurrentWeatherResponse): 
     }
   }
 
+  // IWeatherDay
   return {
     date: data.dt,
     sunset: data.sunset,

@@ -14,11 +14,13 @@ import {SingleDayWeatherCard} from "./components/single-day-weather-card.ts/sing
 import {ICurrentWeatherResponse} from "../../interfaces/services-interfaces/responses/i-current-weather-response";
 import {processCurrentWeatherResponse} from "./utils/process-current-weather-response";
 import {prepareParams} from "./utils/prepare-params";
+import {MultiDayWeatherCardComponent} from "./components/multi-day-weather-card/multi-day-weather-card.component";
+import {IWeatherDay} from "../../interfaces/services-interfaces/responses/utils-models";
 
 @Component({
   selector: 'app-city-weather-card',
   standalone: true,
-  imports: [CommonModule, BaseTabsComponent, SingleDayWeatherCard],
+  imports: [CommonModule, BaseTabsComponent, SingleDayWeatherCard, MultiDayWeatherCardComponent],
   templateUrl: './city-weather-card.component.html',
   styleUrls: ['./city-weather-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -89,19 +91,13 @@ export class CityWeatherCardComponent implements OnInit {
   public onTabPick(tab: INavTab<EWeatherTabs>): void {
     this.activeTab = tab
     this.cdRef.detectChanges()
-    // const params: DefaultWeatherParams = prepareParams(this.currentCity)
-    //
-    // if (tab.value === this.weatherTabs.TODAY) {
-    //   this.weatherAPI.getCurrentWeather(params)
-    //     .pipe(takeUntilDestroyed(this.destroyRef$))
-    //     .subscribe(currentWeather => {
-    //       currentWeather = processCurrentWeatherResponse(currentWeather)
-    //       this.currentDayForecast = currentWeather
-    //
-    //       this.cdRef.detectChanges()
-    //     })
-    // }
   }
 
+  public get oneWeekWeatherDays(): IWeatherDay[] {
+    return this.multipleDaysForecast.list.slice(0, 7)
+  }
 
+  public get twoWeeksWeatherDays(): IWeatherDay[] {
+    return this.multipleDaysForecast.list.slice(0, 14)
+  }
 }

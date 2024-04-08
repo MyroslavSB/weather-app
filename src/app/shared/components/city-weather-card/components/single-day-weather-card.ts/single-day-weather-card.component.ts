@@ -15,15 +15,10 @@ import {ICurrentWeatherResponse} from "../../../../interfaces/services-interface
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SingleDayWeatherCard extends AbstractWeatherTabComponent implements OnChanges {
-  @Input({required: true})
-  weatherData: IWeatherDay | ICurrentWeatherResponse
+  @Input({required: true}) weatherData: IWeatherDay | ICurrentWeatherResponse
 
-  @Input()
-  today: boolean = false
+  @Input() today: boolean = false
 
-  public thermometerStamps: number[] = [
-    40, 20, 0, -20, -40
-  ]
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['weatherData']) {
@@ -31,7 +26,7 @@ export class SingleDayWeatherCard extends AbstractWeatherTabComponent implements
     }
   }
 
-  public get tempText(): string {
+  public get tempTitle(): string {
     return this.today ? 'Current temperature ' : 'Temperature at 14:00 '
   }
 

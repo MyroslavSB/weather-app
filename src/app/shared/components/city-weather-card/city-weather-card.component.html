@@ -33,10 +33,16 @@
         </ng-container>
 
         <ng-container *ngSwitchCase="weatherTabs.ONE_WEEK">
-
+          <app-multi-day-weather-card
+            [weatherDays]="oneWeekWeatherDays"
+          ></app-multi-day-weather-card>
         </ng-container>
 
-        <ng-container *ngSwitchCase="weatherTabs.TWO_WEEKS"></ng-container>
+        <ng-container *ngSwitchCase="weatherTabs.TWO_WEEKS">
+          <app-multi-day-weather-card
+            [weatherDays]="twoWeeksWeatherDays"
+          ></app-multi-day-weather-card>
+        </ng-container>
 
       </ng-container>
     </div>

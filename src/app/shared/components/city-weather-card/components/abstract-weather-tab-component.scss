@@ -89,4 +89,40 @@
       }
     }
   }
+
+  &__days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 32px;
+
+    &-item {
+      border-radius: 4px;
+      border: 2px solid $text-secondary;
+      padding: 6px 12px;
+      color: $text-third;
+      cursor: pointer;
+      transition: 0.3s ease-in;
+      width: max-content;
+      text-align: center;
+
+      &.active-day {
+          border-color: $accent-primary-dark;
+      }
+
+      &-text {
+        color: $text-main;
+      }
+
+      &-temp {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+      }
+
+    }
+  }
+
 }
+

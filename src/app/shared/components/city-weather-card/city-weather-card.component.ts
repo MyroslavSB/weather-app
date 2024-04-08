@@ -39,8 +39,6 @@ export class CityWeatherCardComponent implements OnInit {
 
   public weatherTabs = EWeatherTabs
 
-  private currentCity: ICity = null
-
   constructor(
     private weatherAPI: WeatherApiService,
     private cdRef: ChangeDetectorRef

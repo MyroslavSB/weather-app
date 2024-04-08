@@ -3,13 +3,12 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
-  OnChanges, OnInit,
-  SimpleChanges,
+  OnInit,
   TrackByFunction
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AbstractWeatherTabComponent} from "../abstract-weather-tab-component";
-import {IWeather, IWeatherDay} from "../../../../interfaces/services-interfaces/responses/utils-models";
+import {IWeatherDay} from "../../../../interfaces/services-interfaces/responses/utils-models";
 import {BarHeightPipe} from "../../../../pipes/bar-height.pipe";
 import {TemperaturePipe} from "../../../../pipes/temperature.pipe";
 

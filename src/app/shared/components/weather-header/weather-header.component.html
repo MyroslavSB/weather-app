@@ -1,6 +1,8 @@
 <div class="header">
   <div class="header__main">
-    <div class="header__main-logo">
+    <div class="header__main-logo"
+      (click)="goToMainPage()"
+    >
       <app-base-icon
         [name]="'cloud_sun'"
         [iconClasses]="['logo']"

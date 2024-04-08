@@ -59,4 +59,8 @@ export class WeatherHeaderComponent implements OnInit {
   public onCityPicked(city: ICity): void {
     this.router.navigate([`/${city.name}`])
   }
+
+  public goToMainPage(): void {
+    this.router.navigate([''])
+  }
 }

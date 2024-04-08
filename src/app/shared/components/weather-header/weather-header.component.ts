@@ -6,7 +6,7 @@ import {BaseIconComponent} from "../base-icon/base-icon.component";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {debounceTime, switchMap} from "rxjs";
 import {GeocodingApiService} from "../../../services/geocoding-api.service";
-import {Params} from "@angular/router";
+import {Params, Router} from "@angular/router";
 import {ICity} from "../../interfaces/services-interfaces/i-city";
 
 @Component({
@@ -27,7 +27,8 @@ export class WeatherHeaderComponent implements OnInit {
 
   constructor(
     private geocodingAPI: GeocodingApiService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private router: Router
   ) {
   }
 
@@ -56,6 +57,6 @@ export class WeatherHeaderComponent implements OnInit {
   }
 
   public onCityPicked(city: ICity): void {
-    console.log(city)
+    this.router.navigate([`/${city.name}`])
   }
 }

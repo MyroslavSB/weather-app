@@ -1,9 +1,15 @@
 import {
-  Component, ContentChild,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component,
+  ContentChild,
   ElementRef,
   EventEmitter,
-  Input, OnChanges,
-  Output, SimpleChanges, TemplateRef, TrackByFunction,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  TrackByFunction,
   ViewChild
 } from '@angular/core';
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
@@ -22,7 +28,8 @@ import {OuterClickDirective} from "../../directives/outer-click.directive";
     ReactiveFormsModule,
     OuterClickDirective
   ],
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaseInputComponent<AutoCompleteTypes> implements OnChanges {
 
@@ -52,6 +59,10 @@ export class BaseInputComponent<AutoCompleteTypes> implements OnChanges {
 
   private showAutoComplete: boolean = true
 
+  constructor(
+    private cdRef: ChangeDetectorRef
+  ) {
+  }
   ngOnChanges(changes: SimpleChanges) {
     if (changes['autoCompleteItems']) {
       this.showAutoComplete = true
@@ -76,6 +87,8 @@ export class BaseInputComponent<AutoCompleteTypes> implements OnChanges {
 
   public onAutoCompleteItemClick(auto_item: AutoCompleteTypes): void {
     this.autoCompleteItemPicked.emit(auto_item)
+    this.showAutoComplete = false
+    this.cdRef.detectChanges()
   }
 
   public get showAutoCompleteList(): boolean {

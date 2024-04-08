@@ -24,3 +24,10 @@
 .tiny-text {
   @include font-base(9px, 400, 12px, normal, $roboto);
 }
+
+
+.loader-container {
+  width: 200px;
+  margin: 350px auto 0
+
+}

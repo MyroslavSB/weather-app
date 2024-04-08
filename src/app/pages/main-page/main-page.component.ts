@@ -9,12 +9,12 @@ import {AppRoutes} from "../../shared/const/routes";
 import {BaseIconsRegistryService} from "../../services/base-icons-registry.service";
 import {GeocodingApiService} from "../../services/geocoding-api.service";
 import {Router} from "@angular/router";
-import {completeIconSet} from "../../../base-icons/base-icons";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {BaseLoaderComponent} from "../../shared/components/base-loader/base-loader.component";
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [CommonModule, BaseIconComponent, CityWeatherCardComponent],
+  imports: [CommonModule, BaseIconComponent, CityWeatherCardComponent, BaseLoaderComponent],
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -2,7 +2,9 @@
 
   <ng-container *ngIf="isLoading;else main">
     <div class="loader-container">
-      app is loading...
+      <app-base-loader
+        [showLoader]="true"
+      ></app-base-loader>
     </div>
   </ng-container>
 

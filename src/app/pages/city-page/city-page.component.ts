@@ -64,7 +64,6 @@ export class CityPageComponent implements OnInit {
         this.currentCity$.next(cities[0])
 
       } else {
-        console.log(cities)
         this.getCityError = this.getErrors.BAD_NAME
         this.cdRef.detectChanges()
       }

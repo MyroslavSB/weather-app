@@ -4,7 +4,7 @@ import {BaseInputComponent} from "../base-input/base-input.component";
 import {FormControl} from "@angular/forms";
 import {BaseIconComponent} from "../base-icon/base-icon.component";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {debounceTime, filter, switchMap} from "rxjs";
+import {debounceTime, EMPTY, switchMap} from "rxjs";
 import {GeocodingApiService} from "../../../services/geocoding-api.service";
 import {Params, Router} from "@angular/router";
 import {ICity} from "../../interfaces/services-interfaces/i-city";
@@ -40,9 +40,14 @@ export class WeatherHeaderComponent implements OnInit {
     this.searchControl.valueChanges
       .pipe(
         takeUntilDestroyed(this.destroyRef$),
-        filter(search => !!search),
         debounceTime(500),
         switchMap(search => {
+          if (!search) {
+            this.autoCompleteCities = []
+            this.cdRef.detectChanges()
+            return EMPTY
+          }
+
           const params: Params = {
             q: search,
             limit: 10

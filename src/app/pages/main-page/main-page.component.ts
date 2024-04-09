@@ -6,7 +6,6 @@ import {catchError, EMPTY, Observable, switchMap} from "rxjs";
 import {CityWeatherCardComponent} from "../../shared/components/city-weather-card/city-weather-card.component";
 import {ICity} from "../../shared/interfaces/services-interfaces/i-city";
 import {GeocodingApiService} from "../../services/geocoding-api.service";
-import {Router} from "@angular/router";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {BaseLoaderComponent} from "../../shared/components/base-loader/base-loader.component";
 

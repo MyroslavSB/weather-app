@@ -12,7 +12,7 @@ You can access the live version of this application [here](https://MyroslavSB.gi
 
 ## Used APIs
   [OpenWeatherApi](https://openweathermap.org/api)
-- **[Geocoding API](https://openweathermap.org/api/geocoding-ap)**: A simple tool developed to ease the search for locations while working with geographic names and coordinates.
+- **[Geocoding API](https://openweathermap.org/api/geocoding-api)**: A simple tool developed to ease the search for locations while working with geographic names and coordinates.
 - **[Current weather data](https://openweathermap.org/current)**: A tool developed to access current weather data for any location on Earth.
 - **[Daily Forecast 16 Days](https://openweathermap.org/forecast16)**: A tool developer to obtain forecast for any location on the globe in JSON/XML formats.
 

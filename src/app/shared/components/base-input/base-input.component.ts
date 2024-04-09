@@ -66,6 +66,7 @@ export class BaseInputComponent<AutoCompleteTypes> implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['autoCompleteItems']) {
       this.showAutoComplete = true
+      this.cdRef.detectChanges()
     }
   }
 

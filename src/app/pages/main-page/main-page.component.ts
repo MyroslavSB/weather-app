@@ -6,7 +6,6 @@ import {catchError, EMPTY, Observable, switchMap} from "rxjs";
 import {CityWeatherCardComponent} from "../../shared/components/city-weather-card/city-weather-card.component";
 import {ICity} from "../../shared/interfaces/services-interfaces/i-city";
 import {GeocodingApiService} from "../../services/geocoding-api.service";
-import {Router} from "@angular/router";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {BaseLoaderComponent} from "../../shared/components/base-loader/base-loader.component";
 
@@ -28,23 +27,21 @@ export class MainPageComponent implements OnInit {
   constructor(
     private locationService: LocationService,
     private geocodingApi: GeocodingApiService,
-    private router: Router,
     private cdRef: ChangeDetectorRef
   ) {
   }
 
   ngOnInit() {
-    this.getUserCity()
+    this.getUserLocation()
 
   }
 
-  private getUserCity(): void {
-    this.isLoading = true
+  private getUserLocation(): void {
     this.locationService.getCurrentLocation()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         catchError(err => {
-          this.onLocationError(err)
+          console.error(err)
           return EMPTY
         }),
         switchMap(location => {
@@ -57,7 +54,7 @@ export class MainPageComponent implements OnInit {
             .pipe(
               takeUntilDestroyed(this.destroyRef),
               catchError(err => {
-                this.onLocationError(err)
+                console.error(err)
 
                 return EMPTY
               }),
@@ -65,22 +62,12 @@ export class MainPageComponent implements OnInit {
         })
       ).subscribe(cities => {
       if (cities.length === 0) {
-        this.isLoading = false
         this.cdRef.detectChanges()
         return
       }
 
       this.locationService.userCity.next(cities[0])
-      this.isLoading = false
       this.cdRef.detectChanges()
     })
   }
-
-  private onLocationError(err: any): void {
-    console.error(err)
-    this.router.navigateByUrl('wroclaw')
-    this.isLoading = false
-    this.cdRef.detectChanges()
-  }
-
 }

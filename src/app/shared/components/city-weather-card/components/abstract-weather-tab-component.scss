@@ -1,4 +1,5 @@
 @import "src/assets/styles/shared/vars";
+@import "src/assets/styles/shared/screen-sizes";
 
 .weather-tab {
   border: 1px solid $bg-middle;
@@ -107,7 +108,7 @@
       margin: 0 5px 10px;
 
       &.active-day {
-          border-color: $accent;
+        border-color: $accent;
       }
 
       &-text {
@@ -124,5 +125,43 @@
     }
   }
 
+}
+
+
+@media (max-width: $tablet_width) {
+  .weather-tab {
+    &__single {
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 48px;
+
+    }
+
+    &__time {
+      margin-bottom: 16px;
+
+      &-date {
+        width: max-content;
+        margin: 0 auto 16px;
+      }
+
+      &-sun {
+        width: max-content;
+        margin: 0 auto;
+      }
+    }
+
+    &__temperature {
+      display: block;
+      width: max-content;
+      margin: 0 auto 16px;
+
+      &-thermometer {
+        display: none;
+
+      }
+    }
+
+  }
 }
 

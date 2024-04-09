@@ -1,0 +1,50 @@
+<div class="weather-card">
+  <div class="weather-card__main">
+    <div class="weather-card__main-heading">
+      <h2 class="weather-card__main-title headline-1">Weather in {{ (city | async)?.name }}</h2>
+      <h3 class="weather-card__main-state subtitle-1">{{ (city | async)?.state }}</h3>
+
+    </div>
+
+    <div class="weather-card__main-tabs">
+      <div class="weather-card__main-tabs-container">
+        <app-base-tabs
+          [tabsConfig]="cardTabs"
+          [activeTab]="activeTab"
+          (tabPick)="onTabPick($event)"
+        ></app-base-tabs>
+      </div>
+
+    </div>
+
+    <div class="weather-card__main-content">
+      <ng-container [ngSwitch]="activeTab.value">
+        <ng-container *ngSwitchCase="weatherTabs.TODAY">
+          <app-weather-tab
+            [weatherData]="currentDayForecast"
+            [today]="true"
+          ></app-weather-tab>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="weatherTabs.TOMORROW">
+          <app-weather-tab
+            [weatherData]="multipleDaysForecast?.list[1]"
+          ></app-weather-tab>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="weatherTabs.ONE_WEEK">
+          <app-multi-day-weather-card
+            [weatherDays]="oneWeekWeatherDays"
+          ></app-multi-day-weather-card>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="weatherTabs.TWO_WEEKS">
+          <app-multi-day-weather-card
+            [weatherDays]="twoWeeksWeatherDays"
+          ></app-multi-day-weather-card>
+        </ng-container>
+
+      </ng-container>
+    </div>
+  </div>
+</div>

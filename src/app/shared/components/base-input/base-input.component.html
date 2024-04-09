@@ -1,0 +1,54 @@
+<div class="field">
+
+  <div class="field-wrapper">
+    <div class="left-icon icon"
+         *ngIf="leftIcon"
+    >
+      <app-base-icon
+        [name]="leftIcon"
+        (click)="onLeftIconClick()"
+      ></app-base-icon>
+
+    </div>
+
+    <input
+      #inputElement
+      [formControl]="control"
+      [readOnly]="disabledInput"
+      [placeholder]="placeholder"
+      [class]="{error, disabledInput, searchInput}"
+      [style]="inputStyle"
+      [ngStyle]="{
+      'padding-right': rightPadding,
+      'padding-left': leftPadding
+      }"
+      (keydown.enter)="onEnterPress()"
+      (focus)="onInputFocus($event)"
+
+    />
+    <div class="right-icon icon"
+         *ngIf="rightIcon"
+    >
+      <app-base-icon
+        [name]="rightIcon"
+        (click)="onRightIconClick()"
+      ></app-base-icon>
+    </div>
+
+  </div>
+
+  <div class="field__auto"
+       *ngIf="showAutoCompleteList"
+       appOuterClick
+       [noTriggerElements]="[inputElement]"
+       (outerClick)="onOuterClick($event)"
+  >
+    <div class="field__auto-item"
+         *ngFor="let auto_item of autoCompleteItems; trackBy: trackAutoComplete"
+         (click)="onAutoCompleteItemClick(auto_item)"
+    >
+      <ng-container *ngTemplateOutlet="autoCompleteItemTemplate; context: {$implicit: auto_item}"></ng-container>
+    </div>
+  </div>
+</div>
+

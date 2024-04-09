@@ -1,0 +1,27 @@
+@import "src/assets/styles/shared/vars";
+
+.weather-card {
+  &__main {
+    &-heading {
+      margin-bottom: 32px;
+    }
+
+    &-title {
+      margin-bottom: 8px;
+      color: $text-main;
+    }
+
+    &-state {
+      color: $text-secondary;
+    }
+
+    &-tabs {
+      width: 100%;
+      margin-bottom: 16px;
+
+      &-container {
+        width: 350px;
+      }
+    }
+  }
+}

@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "./assets/styles/index";
+
+.container {
+  width: 85%;
+  max-width: 1080px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.headline-1 {
+  @include font-base(32px, 400, 38.4px, normal, $roboto);
+}
+
+.headline-2 {
+  @include font-base(24px, 400, 36px, normal, $roboto);
+}
+
+.subtitle-1 {
+  @include font-base(14px, 400, 19px, normal, $roboto);
+}
+
+.tiny-text {
+  @include font-base(9px, 400, 12px, normal, $roboto);
+}
+
+
+.loader-container {
+  width: 200px;
+  margin: 350px auto 0
+
+}

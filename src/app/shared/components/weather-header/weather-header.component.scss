@@ -1,0 +1,41 @@
+@import "src/assets/styles/shared/vars";
+.header {
+  &__main {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+
+    &-logo {
+      margin-right: 32px;
+      cursor: pointer;
+    }
+
+    &-search {
+      height: 48px;
+      width: 264px;
+    }
+  }
+
+  &__city {
+    transition: 0.3s ease-in;
+    color: $text-secondary;
+    width: 100%;
+    border-radius: 4px;
+    padding: 4px 0;
+    cursor: pointer;
+
+    &:hover {
+      background: $bg-middle;
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    app-base-icon .logo {
+
+      width: 160px;
+      height: 140px;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+<div class="weather-tab">
+
+  <div class="weather-tab__days">
+    <div class="weather-tab__days-item"
+         [class.active-day]="currentDayWeatherUI.date === day.dt"
+         *ngFor="let day of weatherDays; trackBy: trackDays"
+         (click)="onDayPick(day)">
+      <p class="subtitle-1">{{ day.dt | date: 'EEE' }}</p>
+      <p class="headline-2 weather-tab__days-item-text">{{ day.dt | date: 'dd' }}</p>
+      <p class="subtitle-1">{{ day.dt | date: 'MMMM' }}</p>
+
+    </div>
+  </div>
+  <div class="weather-tab__single">
+    <div class="weather-tab__time">
+      <div class="weather-tab__time-date headline-1">
+        {{ currentDayWeatherUI.date | date : 'MMMM d, y' }}
+      </div>
+
+      <div class="weather-tab__time-sun subtitle-1">
+        Sunrise {{ currentDayWeatherUI.sunrise | date : 'shortTime' }} <br>
+        Sunset {{ currentDayWeatherUI.sunset | date : 'shortTime' }}
+      </div>
+    </div>
+
+    <div class="weather-tab__temperature">
+      <div class="weather-tab__temperature-thermometer">
+
+        <div class="weather-tab__temperature-thermometer-stamp" *ngFor="let stamp of thermometerStamps">
+          <div class="hr">
+            <div class="text tiny-text">{{ stamp | number : '1.0-1' | temperature }}</div>
+          </div>
+        </div>
+
+        <div class="weather-tab__temperature-thermometer-bar"
+             [style.height]="currentDayWeatherUI?.current_temp | barHeight : -40 : 40 : 'percentage_string'"
+        ></div>
+      </div>
+
+
+      <div>
+        <p class="weather-tab__temperature-section subtitle-1">
+          Temperature at 14:00
+          <br> {{ currentDayWeatherUI.current_temp | number : '1.0-1' | temperature }}
+        </p>
+
+        <div class="weather-tab__temperature-section subtitle-1" *ngIf="currentDayWeatherUI.wind_speed">
+          Wind
+          <div class="weather-tab__temperature-wind">
+            <div class="wind-icon"
+                 [style.transform]="currentDayWeatherUI.wind_deg | degreeRotation">
+              <app-base-icon
+                [name]="'arrow_icon'"
+                [iconClasses]="['wind-icon']"
+
+              ></app-base-icon>
+            </div>
+            <p class="subtitle-1"> {{ currentDayWeatherUI.wind_speed }}km/hour</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="weather-tab__stats">
+      <p class="weather-tab__stats-title subtitle-1"> Temperature</p>
+
+      <p class="weather-tab__stats-temp subtitle-1">
+        <span
+          class="weather-tab__stats-temp-span">min. </span>{{ currentDayWeatherUI.min | number : '1.0-1' | temperature }}
+      </p>
+      <p class="weather-tab__stats-temp subtitle-1">
+        <span
+          class="weather-tab__stats-temp-span">max. </span> {{ currentDayWeatherUI.max | number : '1.0-1' | temperature }}
+      </p>
+
+    </div>
+  </div>
+
+</div>

@@ -2,9 +2,13 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Params} from "@angular/router";
 import {environment} from "../../../environments/environment";
+import {EApiUrls} from "../enums/e-api-urls";
 
 export class AbstractHttpComponent {
   protected baseURL = environment.api_url
+  protected apiKey = environment.api_key
+
+  protected apiUrls = EApiUrls
 
   constructor(
     protected http: HttpClient
@@ -21,6 +25,8 @@ export class AbstractHttpComponent {
   }
 
   public httpGetRequest<ResType>(url: string, params: Params = {}): Observable<ResType> {
+    params['appid'] = this.apiKey
+
     return this.http.get<any>(this.baseURL + url, {params});
   }
 }

@@ -1,0 +1,30 @@
+<div class="landing-page">
+
+  <ng-container *ngIf="isLoading;else main">
+    <div class="loader-container">
+      <app-base-loader
+        [showLoader]="true"
+      ></app-base-loader>
+    </div>
+  </ng-container>
+
+  <ng-template #main>
+    <div class="landing-page__main">
+
+      <div class="landing-page__main-city" *ngIf="userCity$ | async; else no_location">
+        <app-city-weather-card
+          [city]="userCity$"
+        ></app-city-weather-card>
+      </div>
+
+      <ng-template  #no_location>
+        <div class="landing-page__main-empty">
+          <h1 class="headline-1">
+            You can find your desired city by entering its name in the input on top
+          </h1>
+        </div>
+      </ng-template>
+    </div>
+  </ng-template>
+
+</div>

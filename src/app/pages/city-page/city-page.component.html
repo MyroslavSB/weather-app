@@ -1,0 +1,16 @@
+<div class="city">
+  <div class="city__main" *ngIf="!getCityError; else error_template">
+    <app-city-weather-card
+      [city]="currentCity$"
+    ></app-city-weather-card>
+  </div>
+
+  <ng-template #error_template>
+
+    <div class="city__error">
+      <p class="headline-1">
+        {{ getCityError }}
+      </p>
+    </div>
+  </ng-template>
+</div>

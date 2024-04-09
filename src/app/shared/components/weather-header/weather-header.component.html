@@ -1,0 +1,28 @@
+<div class="header">
+  <div class="header__main">
+    <div class="header__main-logo"
+      (click)="goToMainPage()"
+    >
+      <app-base-icon
+        [name]="'cloud_sun'"
+        [iconClasses]="['logo']"
+      ></app-base-icon>
+    </div>
+
+    <div class="header__main-search">
+      <app-base-input
+        [control]="searchControl"
+        [placeholder]="'Search for some location...'"
+        [autoCompleteItems]="autoCompleteCities"
+        (autoCompleteItemPicked)="onCityPicked($event)"
+      >
+        <ng-template let-city>
+          <div class="header__city subtitle-1">
+            {{city.name}}
+          </div>
+        </ng-template>
+      </app-base-input>
+    </div>
+
+  </div>
+</div>

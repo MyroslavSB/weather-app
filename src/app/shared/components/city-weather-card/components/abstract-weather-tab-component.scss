@@ -69,9 +69,19 @@
     }
 
     &-section {
-      margin-bottom: 8px;
+      margin-bottom: 12px;
 
     }
+
+    &-wind {
+      display: flex;
+      align-self: center;
+
+      .wind-icon {
+        margin-right: 8px;
+      }
+    }
+
   }
 
   &__stats {
@@ -127,6 +137,15 @@
 
 }
 
+:host {
+  ::ng-deep {
+    app-base-icon .wind-icon {
+
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
 
 @media (max-width: $tablet_width) {
   .weather-tab {

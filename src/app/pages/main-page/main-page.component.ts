@@ -50,23 +50,29 @@ export class MainPageComponent implements OnInit {
             lon: location.coords.longitude
           }
 
+          this.isLoading = true
+          this.cdRef.detectChanges()
+
           return this.geocodingApi.getPotentialUserCities(params)
             .pipe(
               takeUntilDestroyed(this.destroyRef),
               catchError(err => {
                 console.error(err)
-
+                this.isLoading = false
+                this.cdRef.detectChanges()
                 return EMPTY
               }),
             )
         })
       ).subscribe(cities => {
       if (cities.length === 0) {
+        this.isLoading = false
         this.cdRef.detectChanges()
         return
       }
-
       this.locationService.userCity.next(cities[0])
+
+      this.isLoading = false
       this.cdRef.detectChanges()
     })
   }

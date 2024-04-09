@@ -5,6 +5,6 @@ export interface IDayWeatherUi {
   sunrise: number;
   sunset: number;
   current_temp: number;
-  wind_speed?: number;
-  wind_deg?: number;
+  wind_speed: number;
+  wind_deg: number;
 }

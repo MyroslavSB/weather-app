@@ -7,4 +7,6 @@ export const DefaultDayWeatherUi: IDayWeatherUi = {
   sunrise: 0,
   sunset: 0,
   current_temp: 0,
+  wind_speed: 0,
+  wind_deg: 0
 }

@@ -11,11 +11,13 @@ import {AbstractWeatherTabComponent} from "../abstract-weather-tab-component";
 import {IWeatherDay} from "../../../../interfaces/services-interfaces/responses/utils-models";
 import {BarHeightPipe} from "../../../../pipes/bar-height.pipe";
 import {TemperaturePipe} from "../../../../pipes/temperature.pipe";
+import {BaseIconComponent} from "../../../base-icon/base-icon.component";
+import {DegreeRotationPipe} from "../../../../pipes/degree-rotation.pipe";
 
 @Component({
   selector: 'app-multi-day-weather-card',
   standalone: true,
-  imports: [CommonModule, BarHeightPipe, TemperaturePipe],
+    imports: [CommonModule, BarHeightPipe, TemperaturePipe, BaseIconComponent, DegreeRotationPipe],
   templateUrl: './multi-day-weather-card.component.html',
   styleUrls: [
     './multi-day-weather-card.component.scss',

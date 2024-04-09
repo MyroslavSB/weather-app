@@ -5,11 +5,13 @@ import {BarHeightPipe} from "../../../../pipes/bar-height.pipe";
 import {TemperaturePipe} from "../../../../pipes/temperature.pipe";
 import {IWeatherDay} from "../../../../interfaces/services-interfaces/responses/utils-models";
 import {ICurrentWeatherResponse} from "../../../../interfaces/services-interfaces/responses/i-current-weather-response";
+import {BaseIconComponent} from "../../../base-icon/base-icon.component";
+import {DegreeRotationPipe} from "../../../../pipes/degree-rotation.pipe";
 
 @Component({
   selector: 'app-weather-tab',
   standalone: true,
-  imports: [CommonModule, BarHeightPipe, TemperaturePipe],
+  imports: [CommonModule, BarHeightPipe, TemperaturePipe, BaseIconComponent, DegreeRotationPipe],
   templateUrl: './single-day-weather-card.component.html',
   styleUrls: ['./single-day-weather-card.component.scss', '../abstract-weather-tab-component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

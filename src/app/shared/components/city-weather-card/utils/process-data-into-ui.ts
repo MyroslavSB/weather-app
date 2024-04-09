@@ -16,7 +16,9 @@ export function processDataIntoUi(data: IWeatherDay | ICurrentWeatherResponse): 
       sunrise: data.sys.sunrise,
       max: data.main.temp_max,
       min: data.main.temp_min,
-      current_temp: data.main.temp
+      current_temp: data.main.temp,
+      wind_deg: data.wind.deg,
+      wind_speed: data.wind.speed
     }
   }
 
@@ -27,7 +29,9 @@ export function processDataIntoUi(data: IWeatherDay | ICurrentWeatherResponse): 
     sunrise: data.sunrise,
     max: data.temp.max,
     min: data.temp.min,
-    current_temp: data.temp.day
+    current_temp: data.temp.day,
+    wind_deg: data.deg,
+    wind_speed: data.speed
   }
 
 }
